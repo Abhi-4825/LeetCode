@@ -8,7 +8,7 @@ class Solution {
         if(!m.containsKey(str))m.put(str,new ArrayList());
         m.get(str).add(strs[i]);
     }
-    return new ArrayList<> (m. values());
+    return new ArrayList<> (m.values());
 
 
     }
