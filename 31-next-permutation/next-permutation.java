@@ -12,13 +12,8 @@ class Solution {
             second--;
         }
         swap(nums,first,second);
-       
         }
-    
-        reverse(nums,first+1);
-        
-        
-        
+        reverse(nums,first+1);    
     }
     private void reverse(int[] nums,int start ){
         int i=start;
