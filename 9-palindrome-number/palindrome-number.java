@@ -1,7 +1,7 @@
 class Solution {
     public boolean isPalindrome(int x) {
         int rev=0;
-        int num=Math.abs(x);
+        int num=x;
         while(num>0){
             int last=num%10;
            
