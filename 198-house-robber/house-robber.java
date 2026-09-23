@@ -1,15 +1,18 @@
 class Solution {
     public int rob(int[] nums) {
-        int [] dp=new int[nums.length];
-        dp[0]=nums[0];
-        for(int i=1;i<nums.length;i++){
-            int notPick=dp[i-1];
-            int pick=nums[i];
-            if(i>1)
-             pick=nums[i]+dp[i-2];
-            dp[i]=Math.max(pick,notPick); 
+
+        int prev=0;
+        int prev1=0;
+      
+        for(int i=0;i<nums.length;i++){
+            int notPick=prev;
+            int pick=nums[i]+prev1;
+            int cost=Math.max(pick,notPick);
+            prev1=prev;
+            prev=cost;
+          
         }
-        return dp[nums.length-1];
+        return prev;
     }
     // memoization 
     private int rob(int[] nums,int index,int[] dp){
