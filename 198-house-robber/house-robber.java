@@ -1,12 +1,18 @@
 class Solution {
     public int rob(int[] nums) {
-     int prev1=0;
-     int prev2=0;
-     for(int num:nums){
-        int curr=Math.max(prev1,num+prev2);
-        prev2=prev1;
-        prev1=curr ;
-     }
-     return prev1;
+        int [] dp=new int[nums.length];
+        Arrays.fill(dp,-1);
+       return rob(nums,nums.length-1,dp);
     }
+    // memoization 
+    private int rob(int[] nums,int index,int[] dp){
+        if(index==0) return nums[0];
+        if(index<0)return 0;
+        if(dp[index]!=-1) return dp[index];
+        int pick=nums[index] +rob(nums,index-2,dp);
+        int notPick=rob(nums,index-1,dp);
+        return dp[index]=Math.max(pick,notPick);
+    }
+
+
 }
