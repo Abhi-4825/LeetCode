@@ -15,36 +15,36 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> zigzag=new ArrayList<>();
-        if(root== null ) return zigzag;
-        Deque<TreeNode> dq=new LinkedList<>();
+        
+        List<List<Integer>> res=new ArrayList<>();
+        if(root==null) return res;
+        Deque <TreeNode> dq=new LinkedList<>();
         dq.offer(root);
         boolean reverse=false;
         while(!dq.isEmpty()){
+            List<Integer> l=new ArrayList<>();
             int size=dq.size();
-            List<Integer> current=new ArrayList<>(size);
             for(int i=0;i<size;i++){
-            if(!reverse){
-             TreeNode currentNode=dq.pollFirst();
-             current.add(currentNode.val);
-             if(currentNode.left!=null) dq.offerLast(currentNode.left);
-            if(currentNode.right!=null) dq.offerLast(currentNode.right);
-          }else{
-             TreeNode currentNode=dq.pollLast();
-             current.add(currentNode.val);
-             if(currentNode.right!=null) dq.offerFirst(currentNode.right);
-             if(currentNode.left!=null) dq.offerFirst(currentNode.left);
-            
-          }
-        
-
+                if(reverse){
+                    TreeNode curr=dq.pollLast();
+                    l.add(curr.val);
+                    if(curr.right!=null)dq.addFirst(curr.right);
+                    if(curr.left!=null) dq.addFirst(curr.left);
+                    
+                }
+                 else{
+                    TreeNode curr=dq.pollFirst();
+                    l.add(curr.val);
+                    if(curr.left!=null) dq.addLast(curr.left);
+                    if(curr.right!=null)dq.addLast(curr.right);
+                    
+                }
+             
             }
-            reverse=!reverse;
-           zigzag.add(current);
-
+               reverse=!reverse;
+                res.add(l);
 
         }
-
-  return zigzag;
+        return res;
     }
 }
