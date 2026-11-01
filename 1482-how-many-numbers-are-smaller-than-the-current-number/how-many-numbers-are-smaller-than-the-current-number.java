@@ -1,16 +1,20 @@
 class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
-      int[] count=new int[102];
-      for(int num:nums){
-        count[num+1]++;
-      }
-      for(int i=1;i<count.length;i++){
-        count[i]+=count[i-1];
-      }
-      int [ ] arr =new int[nums.length];
-      for(int i=0;i<nums.length;i++){
-        arr[i]=count[nums[i]];
-      }
-      return arr;
+           int max=Integer.MIN_VALUE;
+           for(int num:nums) max=Math.max(max,num);
+           int [] count=new int[max+1];
+           for(int num:nums) count[num]=count[num]+1;
+           int s=0;
+           for(int i=0;i<count.length;i++){
+             int n=count[i];
+             count[i]=s;
+             s+=n;
+           }
+           int [] res=new int[nums.length];
+           for(int i=0;i<res.length;i++){
+            res[i]=count[nums[i]];
+           }
+           return res;
+
     }
 }
